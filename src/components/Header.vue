@@ -1,15 +1,11 @@
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
+<script setup></script>
 
 <template>
   <header>
     <div class="container">
       <!-- Premier bloc -->
       <div>
-        <RouterLink :to="{ name: 'home' }"
-          ><img src="../assets/logo.svg" alt="Logo leboncoin"
-        /></RouterLink>
+        <img src="../assets/logo.svg" alt="Logo leboncoin" />
 
         <div>
           <button><font-awesome-icon :icon="['far', 'plus-square']" /> Déposer une annonce</button>
@@ -64,10 +60,12 @@ import { RouterLink } from 'vue-router'
 header: {
   height: 110px;
 }
-.container > div {
+
+.container > div:first-child {
   border: 1px solid red;
   display: flex;
 }
+
 img {
   width: 140px;
 }
