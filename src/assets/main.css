@@ -1,1 +1,15 @@
 @import './base.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.container {
+  width: 1055px;
+  margin: 0 auto;
+  height: 100%;
+}
