@@ -1,7 +1,11 @@
 @import './base.css';
 
-* {
-  box-sizing: border-box;
+:root {
+  --orange: #ec5a13;
+  --light-grey: #f4f9fd;
+  --beige: #fee9dd;
+  --dark-grey: #627c93;
+  --brown: #89380f;
 }
 
 body {
@@ -12,4 +16,9 @@ body {
   width: 1055px;
   margin: 0 auto;
   height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
