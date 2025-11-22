@@ -11,7 +11,7 @@
 
 <style scoped>
 footer {
-  height: 80px;
+  height: var(--height-footer);
   background-color: var(--light-grey);
 }
 

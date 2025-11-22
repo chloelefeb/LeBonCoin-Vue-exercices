@@ -35,6 +35,10 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+main {
+  min-height: calc(100vh - var(--height-header) - var(--height-footer));
+}
+
 .container {
   display: flex;
   flex-direction: column;

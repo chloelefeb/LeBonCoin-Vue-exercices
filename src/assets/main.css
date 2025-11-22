@@ -6,10 +6,17 @@
   --beige: #fee9dd;
   --dark-grey: #627c93;
   --brown: #89380f;
+  --dark-blue: #094171;
+  --height-header: 110px;
+  --height-footer: 80px;
 }
 
 body {
   font-family: 'Nunito Sans', sans-serif;
+}
+
+main {
+  margin-top: var(--height-header);
 }
 
 .container {

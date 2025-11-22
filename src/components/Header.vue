@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 import BtnPublishOffer from './BtnPublishOffer.vue'
 </script>
 
@@ -7,7 +8,9 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
     <div class="container">
       <!-- Premier bloc -->
       <div class="topBloc">
-        <img src="../assets/logo.svg" alt="Logo leboncoin" />
+        <RouterLink :to="{ name: 'home' }"
+          ><img src="../assets/logo.svg" alt="Logo leboncoin"
+        /></RouterLink>
 
         <div class="middlePart">
           <BtnPublishOffer />
@@ -62,16 +65,15 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
 
 <style setup>
 header {
-  height: 110px;
-  /* border: 1px solid green; */
+  height: var(--height-header);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  border-bottom: var(--dark-grey) 1px solid;
 }
 
-/* .container {
-  /* border: 1px solid blue; */
-/* } */
-
 .container > div {
-  /* border: 1px solid red; */
   display: flex;
 }
 /* ----------Top Bloc----------- */
