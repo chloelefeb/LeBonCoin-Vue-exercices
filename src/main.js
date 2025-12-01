@@ -1,6 +1,6 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
+import { createApp, ref } from 'vue'
 import App from './App.vue'
 import router from './router'
 
@@ -15,8 +15,16 @@ import {
   faCheckDouble,
   faAngleLeft,
   faAngleRight,
+  faArrowRight,
 } from '@fortawesome/free-solid-svg-icons'
-import { faUser, faPlusSquare, faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
+import {
+  faUser,
+  faPlusSquare,
+  faHeart,
+  faClock,
+  faEyeSlash,
+  faEye,
+} from '@fortawesome/free-regular-svg-icons'
 
 library.add(
   faSignOutAlt,
@@ -30,10 +38,21 @@ library.add(
   faClock,
   faAngleLeft,
   faAngleRight,
+  faArrowRight,
+  faEyeSlash,
+  faEye,
 )
 
 const app = createApp(App).component('font-awesome-icon', FontAwesomeIcon)
 
 app.use(router)
+
+const userToken = ref('')
+
+const changeToken = (token) => {
+  userToken.value = token
+}
+
+app.provide('GlobalStore', { userToken: userToken, changeToken: changeToken })
 
 app.mount('#app')
