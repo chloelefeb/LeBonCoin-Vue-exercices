@@ -4,7 +4,12 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
 import { inject } from 'vue'
 
 const GlobalStore = inject('GlobalStore')
-console.log(GlobalStore.userToken)
+console.log(GlobalStore.userInfos)
+
+const disconnectUser = () => {
+  GlobalStore.changeUserInfos(null)
+  $cookies.remove('userInfos')
+}
 </script>
 
 <template>
@@ -26,16 +31,18 @@ console.log(GlobalStore.userToken)
         </div>
 
         <div class="connectionPart">
-          <RouterLink :to="{ name: 'login' }" v-if="!GlobalStore.userToken.value">
+          <RouterLink :to="{ name: 'login' }" v-if="!GlobalStore.userInfos.value">
             <font-awesome-icon :icon="['far', 'user']" />
             <p>Se connecter</p>
           </RouterLink>
 
-          <font-awesome-icon
-            :icon="['fas', 'sign-out-alt']"
-            v-else
-            @click="GlobalStore.changeToken('')"
-          />
+          <div v-else class="disconnectPart">
+            <div>
+              <font-awesome-icon :icon="['far', 'user']" />
+              <p>{{ GlobalStore.userInfos.value.username }}</p>
+            </div>
+            <font-awesome-icon :icon="['fas', 'sign-out-alt']" @click="disconnectUser" />
+          </div>
         </div>
       </div>
 
@@ -142,6 +149,19 @@ input::placeholder {
 
 img {
   width: 140px;
+}
+
+.disconnectPart {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.disconnectPart > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 /* --------Bottom Bloc----------- */
