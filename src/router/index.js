@@ -12,6 +12,8 @@ const router = createRouter({
       component: HomeView,
       props: (route) => {
         return {
+          page: parseInt(route.query.page) || 1,
+          title: route.query.title || '',
           sort: route.query.sort || '',
           pricemin: Number(route.query.pricemin) || '',
           pricemax: Number(route.query.pricemax) || '',

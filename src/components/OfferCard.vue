@@ -6,7 +6,7 @@ const props = defineProps({
   offerInfos: Object,
 })
 
-// console.log(props.offerInfos.attributes.pictures.data[0].attributes.url)
+// console.log(props.offerInfos.attributes)
 
 const formatedDate = computed(() => {
   return props.offerInfos.attributes.publishedAt.split('T')[0].split('-').reverse().join('/')
@@ -43,7 +43,18 @@ const formatedPrice = computed(() => {
         />
         <p>{{ offerInfos.attributes.owner.data.attributes.username }}</p>
       </div>
-      <img :src="offerInfos.attributes.pictures.data[0].attributes.url" alt="" />
+
+      <img
+        v-if="offerInfos.attributes.pictures.data === null"
+        src="../assets/imgs/default-image.jpg"
+        alt="Image default"
+      />
+      <img
+        v-else
+        :src="offerInfos.attributes.pictures.data[0].attributes.url"
+        :alt="offerInfos.title"
+      />
+
       <p>{{ offerInfos.attributes.title }}</p>
       <p>{{ formatedPrice }} €</p>
 

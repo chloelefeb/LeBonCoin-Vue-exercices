@@ -5,12 +5,14 @@ import { onMounted, ref, watchEffect } from 'vue'
 import OfferCard from '../components/OfferCard.vue'
 import TimeToSell from '../components/TimeToSell.vue'
 import Filters from '../components/Filters.vue'
+import Pagination from '../components/Pagination.vue'
 
-const props = defineProps(['sort', 'pricemin', 'pricemax'])
+const props = defineProps(['sort', 'pricemin', 'pricemax', 'title', 'page'])
 
 const offersList = ref([])
+const numOfPages = ref(1)
 
-onMounted(async () => {
+onMounted(() => {
   watchEffect(async () => {
     try {
       let priceFilters = ''
@@ -24,10 +26,14 @@ onMounted(async () => {
       }
 
       const { data } = await axios.get(
-        `https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar${priceFilters}&sort=${props.sort}`,
+        `https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar${priceFilters}&sort=${props.sort}&filters[title][$containsi]=${props.title}&pagination[page]=${props.page}&pagination[pageSize]=10`,
       )
 
+      // Pour vérifer les informations reçues
+      console.log('HomeView - data >>>', data.meta.pagination.pageCount)
+
       offersList.value = data.data
+      numOfPages.value = data.meta.pagination.pageCount
     } catch (error) {
       console.log(error)
     }
@@ -39,7 +45,7 @@ onMounted(async () => {
   <main>
     <p v-if="offersList.length === 0" class="container">Chargement en cours ...</p>
     <div v-else class="container">
-      <Filters :sort="sort" :pricemin="pricemin" :pricemax="pricemax" />
+      <Filters :sort="sort" :pricemin="pricemin" :pricemax="pricemax" :title="title" :page="page" />
 
       <p>Des millions de petites annonces et autant d'occasions de se faire plaisir</p>
       <TimeToSell />
@@ -47,6 +53,15 @@ onMounted(async () => {
       <div class="offersList">
         <OfferCard v-for="offer in offersList" :key="offer.id" :offerInfos="offer" />
       </div>
+
+      <Pagination
+        :sort="sort"
+        :pricemin="pricemin"
+        :pricemax="pricemax"
+        :title="title"
+        :page="page"
+        :numOfPages="numOfPages"
+      />
     </div>
   </main>
 </template>
@@ -59,6 +74,7 @@ main {
 .container {
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
   padding: 50px 0;
 }
@@ -70,6 +86,7 @@ main {
 }
 .offersList {
   /* border: 1px solid purple; */
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 30px 15px;
