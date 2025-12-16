@@ -41,7 +41,7 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <main>
+  <main class="login">
     <div class="container">
       <form @submit.prevent="handleSubmit">
         <div>
@@ -134,7 +134,7 @@ label {
   gap: 10px;
 }
 
-input {
+.login input {
   height: 45px;
   width: 420px;
   border-radius: 15px;
@@ -143,7 +143,7 @@ input {
   border: 1px black solid;
 }
 
-input:focus {
+.login input:focus {
   outline: none;
 }
 

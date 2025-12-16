@@ -77,17 +77,17 @@ const handleSubmit = () => {
       <p>Tri</p>
 
       <div>
-        <label>
+        <label for="priceAsc">
           Prix croissants
           <input type="radio" value="price:asc" id="priceAsc" v-model="sort" />
         </label>
 
-        <label>
+        <label for="priceDesc">
           Prix décroissants
           <input type="radio" value="price:desc" id="priceDesc" v-model="sort" />
         </label>
 
-        <label>
+        <label for="noSort">
           Pas de tri
           <input type="radio" value="" id="noSort" v-model="sort" />
         </label>
@@ -106,10 +106,6 @@ form {
   margin-bottom: 40px;
   width: 100%;
   /* border: 1px solid green; */
-}
-
-form > div:nth-child(2) {
-  border: 1px solid red;
 }
 
 p {

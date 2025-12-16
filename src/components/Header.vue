@@ -156,17 +156,17 @@ header {
   cursor: pointer;
 }
 
-input {
+.middlePart input {
   width: 250px;
   border: none;
   background-color: var(--light-grey);
 }
 
-input:focus {
+.middlePart input:focus {
   outline: none;
 }
 
-input::placeholder {
+.middlePart input::placeholder {
   color: black;
 }
 
