@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const props = defineProps(['sort', 'pricemin', 'pricemax', 'title', 'page'])
-console.log('props>>>>>', props)
+// console.log('props>>>>>', props)
 
 const priceMin = ref(props.pricemin)
 const priceMax = ref(props.pricemax)

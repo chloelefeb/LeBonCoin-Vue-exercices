@@ -13,10 +13,10 @@ onMounted(async () => {
       `https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers/${props.id}?populate[0]=pictures&populate[1]=owner.avatar`,
     )
 
-    console.log(
-      'Response offerview >>>',
-      data.data.attributes.owner.data.attributes.avatar.data.attributes.url,
-    )
+    // console.log(
+    //   'Response offerview >>>',
+    //   data.data.attributes.owner.data.attributes.avatar.data.attributes.url,
+    // )
 
     offerInfos.value = data.data
   } catch (error) {
@@ -77,6 +77,7 @@ const cycleList = computed(() => {
         <div class="owner">
           <div>
             <img
+              v-if="offerInfos.attributes.owner.data.attributes.avatar.data"
               :src="offerInfos.attributes.owner.data.attributes.avatar.data.attributes.url"
               alt="Avatar"
             />
@@ -104,6 +105,7 @@ main {
 }
 
 .container {
+  padding-top: 40px;
   display: flex;
   gap: 20px;
   /* border: 1px solid purple; */

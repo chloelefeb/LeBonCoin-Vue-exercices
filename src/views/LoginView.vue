@@ -1,11 +1,12 @@
 <script setup>
 import axios from 'axios'
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink, useRouter, useRoute } from 'vue-router'
 import { ref, inject } from 'vue'
 
 const GlobalStore = inject('GlobalStore')
 
 const router = useRouter()
+const route = useRoute()
 
 const email = ref('')
 const password = ref('')
@@ -24,11 +25,15 @@ const handleSubmit = async () => {
       )
 
       console.log('response>>>>>>>>>', data)
-      GlobalStore.changeUserInfos({ username: data.user.username, token: data.jwt })
+      GlobalStore.changeUserInfos({
+        username: data.user.username,
+        token: data.jwt,
+        id: data.user.id,
+      })
 
-      $cookies.set('userInfos', { username: data.user.username, token: data.jwt })
+      $cookies.set('userInfos', { username: data.user.username, token: data.jwt, id: data.user.id })
 
-      router.push({ name: 'home' })
+      router.push({ name: route.query.redirect || 'home' })
     } catch (error) {
       console.log('catch>>>>>>>>>', error)
       errorMessage.value = 'Un problème est survenu, veuillez essayer à nouveau'

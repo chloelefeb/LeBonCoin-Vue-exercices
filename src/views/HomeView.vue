@@ -30,7 +30,7 @@ onMounted(() => {
       )
 
       // Pour vérifer les informations reçues
-      console.log('HomeView - data >>>', data.meta.pagination.pageCount)
+      // console.log('HomeView - data >>>', data.meta.pagination.pageCount)
 
       offersList.value = data.data
       numOfPages.value = data.meta.pagination.pageCount
