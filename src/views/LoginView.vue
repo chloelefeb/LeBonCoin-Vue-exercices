@@ -24,7 +24,7 @@ const handleSubmit = async () => {
         { identifier: email.value, password: password.value },
       )
 
-      console.log('response>>>>>>>>>', data)
+      // console.log('response>>>>>>>>>', data)
       GlobalStore.changeUserInfos({
         username: data.user.username,
         token: data.jwt,
@@ -33,7 +33,7 @@ const handleSubmit = async () => {
 
       $cookies.set('userInfos', { username: data.user.username, token: data.jwt, id: data.user.id })
 
-      router.push({ name: route.query.redirect || 'home' })
+      router.push({ path: route.query.redirect || '/' })
     } catch (error) {
       console.log('catch>>>>>>>>>', error)
       errorMessage.value = 'Un problème est survenu, veuillez essayer à nouveau'
