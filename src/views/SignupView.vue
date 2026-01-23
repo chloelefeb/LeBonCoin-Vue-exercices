@@ -20,10 +20,28 @@ const handleSubmit = async () => {
   if (username.value && email.value && password.value) {
     isSubmitting.value = true
     try {
+      // const { data } = await axios.post(
+      //   'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/auth/local/register',
+      //   { username: username.value, email: email.value, password: password.value },
+      // )
+
+      // Essai local
+      // const { data } = await axios.post('http://localhost:1337/api/auth/local/register', {
+      //   username: username.value,
+      //   email: email.value,
+      //   password: password.value,
+      // })
+
+      //Backend NorthFlank
       const { data } = await axios.post(
-        'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/auth/local/register',
-        { username: username.value, email: email.value, password: password.value },
+        'https://site--strapi-backend-leboncoin--sdpbxrgw6422.code.run/api/auth/local/register',
+        {
+          username: username.value,
+          email: email.value,
+          password: password.value,
+        },
       )
+
       console.log('response>>>>>', data)
       GlobalStore.changeUserInfos({
         username: data.user.username,

@@ -9,7 +9,7 @@ import Pagination from '../components/Pagination.vue'
 
 const props = defineProps(['sort', 'pricemin', 'pricemax', 'title', 'page'])
 
-const offersList = ref([])
+const offersList = ref()
 const numOfPages = ref(1)
 
 onMounted(() => {
@@ -25,8 +25,19 @@ onMounted(() => {
         priceFilters += `&filters[price][$gte]=${props.pricemin}`
       }
 
+      //Reacteur
+      // const { data } = await axios.get(
+      //   `https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar${priceFilters}&sort=${props.sort}&filters[title][$containsi]=${props.title}&pagination[page]=${props.page}&pagination[pageSize]=10`,
+      // )
+
+      // Essaie local
+      // const { data } = await axios.get(
+      //   `http://localhost:1337/api/offers?populate[0]=pictures&populate[1]=owner.avatar${priceFilters}&sort=${props.sort}&filters[title][$containsi]=${props.title}&pagination[page]=${props.page}&pagination[pageSize]=10`,
+      // )
+
+      //Backend Northflank
       const { data } = await axios.get(
-        `https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar${priceFilters}&sort=${props.sort}&filters[title][$containsi]=${props.title}&pagination[page]=${props.page}&pagination[pageSize]=10`,
+        `https://site--strapi-backend-leboncoin--sdpbxrgw6422.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar${priceFilters}&sort=${props.sort}&filters[title][$containsi]=${props.title}&pagination[page]=${props.page}&pagination[pageSize]=10`,
       )
 
       // Pour vérifer les informations reçues
@@ -43,7 +54,7 @@ onMounted(() => {
 
 <template>
   <main>
-    <p v-if="offersList.length === 0" class="container">Chargement en cours ...</p>
+    <p v-if="offersList === undefined" class="container">Chargement en cours ...</p>
     <div v-else class="container">
       <Filters :sort="sort" :pricemin="pricemin" :pricemax="pricemax" :title="title" :page="page" />
 

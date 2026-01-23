@@ -29,6 +29,8 @@ const formatedPrice = computed(() => {
 
   return newStr
 })
+
+console.log(props.offerInfos)
 </script>
 
 <template>

@@ -10,14 +10,19 @@ const offerInfos = ref(null)
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get(
-      `https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers/${props.id}?populate[0]=pictures&populate[1]=owner.avatar`,
-    )
-
-    // console.log(
-    //   'Response offerview >>>',
-    //   data.data.attributes.owner.data.attributes.avatar.data.attributes.url,
+    // const { data } = await axios.get(
+    //   `https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers/${props.id}?populate[0]=pictures&populate[1]=owner.avatar`,
     // )
+
+    // Essaie local
+    // const { data } = await axios.get(
+    //   `http://localhost:1337/api/offers/${props.id}?populate[0]=pictures&populate[1]=owner.avatar`,
+    // )
+
+    // Backend Northflank
+    const { data } = await axios.get(
+      `https://site--strapi-backend-leboncoin--sdpbxrgw6422.code.run/api/offers/${props.id}?populate[0]=pictures&populate[1]=owner.avatar`,
+    )
 
     offerInfos.value = data.data
   } catch (error) {
@@ -166,12 +171,12 @@ h2 {
   font-size: 18px;
   padding-top: 20px;
   margin-bottom: 20px;
-  border-top: 1px solid var(--light-grey);
+  border-top: 1px solid var(--med-grey);
 }
 
 h2 + p {
   padding-bottom: 50px;
-  border-bottom: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--med-grey);
   margin-bottom: 20px;
 }
 
@@ -230,7 +235,7 @@ h2 + p {
   gap: 20px;
 }
 
-button {
+.btnPart button {
   background-color: var(--orange);
   border: none;
   color: white;

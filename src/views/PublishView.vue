@@ -35,8 +35,28 @@ const handleSubmit = async () => {
 
       formData.append('data', stringifiedInfos)
 
+      // const { data } = await axios.post(
+      //   'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers',
+      //   formData,
+      //   {
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data',
+      //       Authorization: `Bearer ${GlobalStore.userInfos.value.token}`,
+      //     },
+      //   },
+      // )
+
+      // Essai local
+      // const { data } = await axios.post('http://localhost:1337/api/offers', formData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //     Authorization: `Bearer ${GlobalStore.userInfos.value.token}`,
+      //   },
+      // })
+
+      // Backend Northflank
       const { data } = await axios.post(
-        'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers',
+        'https://site--strapi-backend-leboncoin--sdpbxrgw6422.code.run/api/offers',
         formData,
         {
           headers: {
@@ -45,6 +65,7 @@ const handleSubmit = async () => {
           },
         },
       )
+
       console.log('data>>>>>>>', data)
       router.push({ name: 'offer', params: { id: data.data.id } })
     } else {

@@ -10,6 +10,7 @@
   --height-header: 110px;
   --height-footer: 80px;
   --med-grey: grey;
+  --green: green;
 }
 
 body {
@@ -34,4 +35,9 @@ a {
 button {
   font-size: inherit;
   font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
 }

@@ -19,9 +19,25 @@ const handleSubmit = async () => {
   if (email.value && password.value) {
     isSubmitting.value = true
     try {
+      // Reateur
+      // const { data } = await axios.post(
+      //   'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/auth/local',
+      //   { identifier: email.value, password: password.value },
+      // )
+
+      //Essai local
+      // const { data } = await axios.post('http://localhost:1337/api/auth/local', {
+      //   identifier: email.value,
+      //   password: password.value,
+      // })
+
+      //Backend Northflank
       const { data } = await axios.post(
-        'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/auth/local',
-        { identifier: email.value, password: password.value },
+        'https://site--strapi-backend-leboncoin--sdpbxrgw6422.code.run/api/auth/local',
+        {
+          identifier: email.value,
+          password: password.value,
+        },
       )
 
       // console.log('response>>>>>>>>>', data)
